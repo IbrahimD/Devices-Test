@@ -18,7 +18,7 @@ public class connectionHelper {
         switchInfo = new SwitchInformation();
     }
 
-    public void initConnection() throws JSchException {
+    public void initConnection() throws JSchException, InterruptedException {
         java.util.Properties config = new java.util.Properties();
         config.put("StrictHostKeyChecking", "no");
         JSch jsch = new JSch();
