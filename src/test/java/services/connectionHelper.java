@@ -30,7 +30,7 @@ public class connectionHelper {
         System.out.println("Connected");
         
         channel = (ChannelExec) session.openChannel("exec");
-		channel.setCommand(command);
+		channel.setCommand("show run");
 
 		ByteArrayOutputStream responseStream = new ByteArrayOutputStream();
 		channel.setOutputStream(responseStream);
