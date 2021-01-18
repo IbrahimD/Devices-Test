@@ -46,7 +46,6 @@ public class connectionHelper {
     public void readResponse(String command) throws JSchException, IOException {
         initConnection();
         setUpChannel(command);
-        System.out.println(channel.isc);
         try {
             byte[] tmp = new byte[1024];
             while (true) {
