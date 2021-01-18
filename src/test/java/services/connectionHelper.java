@@ -3,6 +3,7 @@ package services;
 import com.jcraft.jsch.*;
 import devicesInformation.SwitchInformation;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -10,7 +11,7 @@ public class connectionHelper {
     SwitchInformation switchInfo;
     Session session;
     InputStream in;
-    Channel channel;
+    ChannelExec  channel;
 
 
     public connectionHelper() {
@@ -31,18 +32,21 @@ public class connectionHelper {
     }
 
     public void setUpChannel(String command) throws JSchException, IOException {
-        channel = session.openChannel("exec");
-        ((ChannelExec) channel).setCommand(command);
-        channel.setInputStream(null);
-        ((ChannelExec) channel).setErrStream(System.err);
+		channel = (ChannelExec) session.openChannel("exec");
+		channel.setCommand(command);
 
-        in = channel.getInputStream();
-        channel.connect();
+		ByteArrayOutputStream responseStream = new ByteArrayOutputStream();
+		channel.setOutputStream(responseStream);
+		channel.connect();
+		String responseString = new String(responseStream.toByteArray());
+		System.out.println("output is:\n");
+		System.out.println(responseString);
     }
 
     public void readResponse(String command) throws JSchException, IOException {
         initConnection();
         setUpChannel(command);
+        System.out.println(channel.isc);
         try {
             byte[] tmp = new byte[1024];
             while (true) {
