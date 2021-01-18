@@ -26,10 +26,12 @@ public class connectionHelper {
         session.setPassword(switchInfo.getPassword());
         session.setConfig(config);
         session.connect();
-        session.setTimeout(100000);
+        session.setTimeout(1000);
         System.out.println("Connected");
         
+          System.out.println("openChannel");
         channel = (ChannelExec) session.openChannel("exec");
+        System.out.println("setCommand");
 		channel.setCommand("show version");
 
 		ByteArrayOutputStream responseStream = new ByteArrayOutputStream();
