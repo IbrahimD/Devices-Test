@@ -36,8 +36,9 @@ public class connectionHelper {
 
 		ByteArrayOutputStream responseStream = new ByteArrayOutputStream();
 		channel.setOutputStream(responseStream);
+	    System.out.println("channel connecting");
 		channel.connect();
-		
+		System.out.println("channel is connected");
 		  while (channel.isConnected()) {
 	            Thread.sleep(100);
 	        }
