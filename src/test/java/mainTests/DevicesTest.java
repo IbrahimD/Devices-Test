@@ -15,7 +15,7 @@ public class DevicesTest {
     }
 
     @Test
-    public void readResponse() throws IOException, JSchException {
-        connection.readResponse("show run");
+    public void readResponse() throws IOException, JSchException, InterruptedException {
+        connection.readResponse("ifconfig");
     }
 }
