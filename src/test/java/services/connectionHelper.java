@@ -46,7 +46,7 @@ public class connectionHelper {
 
     }
 
-    public void setUpChannel(String command) throws JSchException, IOException {
+    public void setUpChannel(String command) throws JSchException, IOException, InterruptedException {
     	
 		channel = (ChannelExec) session.openChannel("exec");
 		channel.setCommand(command);
@@ -59,7 +59,7 @@ public class connectionHelper {
 		System.out.println(responseString);
     }
 
-    public void readResponse(String command) throws JSchException, IOException {
+    public void readResponse(String command) throws JSchException, IOException, InterruptedException {
         initConnection();
         setUpChannel(command);
         try {
