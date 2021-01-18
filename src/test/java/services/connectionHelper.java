@@ -39,9 +39,7 @@ public class connectionHelper {
 	    System.out.println("channel connecting");
 		channel.connect();
 		System.out.println("channel is connected");
-		  while (channel.isConnected()) {
-	            Thread.sleep(100);
-	        }
+		 
 		String responseString = new String(responseStream.toByteArray());
 		System.out.println("output is:\n");
 		System.out.println(responseString);
