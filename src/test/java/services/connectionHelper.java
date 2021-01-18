@@ -26,7 +26,7 @@ public class connectionHelper {
         session.setPassword(switchInfo.getPassword());
         session.setConfig(config);
         session.connect();
-        session.setTimeout(100);
+        session.setTimeout(100000);
         System.out.println("Connected");
         
         channel = (ChannelExec) session.openChannel("exec");
