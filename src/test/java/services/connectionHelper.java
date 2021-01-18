@@ -28,10 +28,22 @@ public class connectionHelper {
         session.connect();
         session.setTimeout(100);
         System.out.println("Connected");
+        
+        channel = (ChannelExec) session.openChannel("exec");
+		channel.setCommand(command);
+
+		ByteArrayOutputStream responseStream = new ByteArrayOutputStream();
+		channel.setOutputStream(responseStream);
+		channel.connect();
+		String responseString = new String(responseStream.toByteArray());
+		System.out.println("output is:\n");
+		System.out.println(responseString);
+		
 
     }
 
     public void setUpChannel(String command) throws JSchException, IOException {
+    	
 		channel = (ChannelExec) session.openChannel("exec");
 		channel.setCommand(command);
 
